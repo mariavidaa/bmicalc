@@ -68,6 +68,7 @@ public class BMICalcTest {
 	@ValueSource (doubles = {10, 18.4})
 	void testcat1(double bmi) {
 		assertEquals("UNDERWEIGHT",b.category(bmi));
+		assertNotEquals("UNDERWEIGHT", b.category(19));
 	}
 	
 	
@@ -76,6 +77,7 @@ public class BMICalcTest {
 	@ValueSource (doubles = {18.5, 20, 24.9})
 	void testcat2(double bmi) {
 		assertEquals("NORMAL",b.category(bmi));
+		assertNotEquals("NORMAL", b.category(26));
 	}
 	
 	@ParameterizedTest
@@ -83,6 +85,7 @@ public class BMICalcTest {
 	@ValueSource (doubles = {25.0, 28, 29.9})
 	void testcat3(double bmi) {
 		assertEquals("OVERWEIGHT",b.category(bmi));
+		assertNotEquals("OVERWEIGHT", b.category(23));
 	}
 	
 	@ParameterizedTest
@@ -90,6 +93,25 @@ public class BMICalcTest {
 	@ValueSource (doubles = {30, 60})
 	void testcat4(double bmi) {
 		assertEquals("OBESE",b.category(bmi));
+		assertNotEquals("OBESE", b.category(25));
 	}
+	
+	@ParameterizedTest
+	@DisplayName("abdominalObesity woman correct")
+	@ValueSource (doubles = {80.1, 85})
+	void testao1(double wc) {
+		assertEquals(true,b.abdominalObesity(wc, 'F'));
+		assertNotEquals(true, b.abdominalObesity(80, 'F'));
+	}
+	
+	@ParameterizedTest
+	@DisplayName("abdominalObesity man correct")
+	@ValueSource (doubles = {92.0, 95})
+	void testao2(double wc) {
+		assertEquals(true,b.abdominalObesity(wc, 'M'));
+		assertNotEquals(true, b.abdominalObesity(90, 'M'));
+	}
+	
+	
 	
 }
