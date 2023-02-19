@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class BMICalcTest {
 	
@@ -61,5 +63,33 @@ public class BMICalcTest {
 		}
 	}
 	
+	@ParameterizedTest
+	@DisplayName("category underweight correct")
+	@ValueSource (doubles = {10, 18.4})
+	void testcat1(double bmi) {
+		assertEquals("UNDERWEIGHT",b.category(bmi));
+	}
+	
+	
+	@ParameterizedTest
+	@DisplayName("category normal correct")
+	@ValueSource (doubles = {18.5, 20, 24.9})
+	void testcat2(double bmi) {
+		assertEquals("NORMAL",b.category(bmi));
+	}
+	
+	@ParameterizedTest
+	@DisplayName("category overweight correct")
+	@ValueSource (doubles = {25.0, 28, 29.9})
+	void testcat3(double bmi) {
+		assertEquals("OVERWEIGHT",b.category(bmi));
+	}
+	
+	@ParameterizedTest
+	@DisplayName("category obese correct")
+	@ValueSource (doubles = {30, 60})
+	void testcat4(double bmi) {
+		assertEquals("OBESE",b.category(bmi));
+	}
 	
 }
