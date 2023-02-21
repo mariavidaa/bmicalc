@@ -1,5 +1,6 @@
 package bmicalc;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -18,12 +19,6 @@ public class BMICalcTest {
 		b = new BMICalcImpl();
 	}
 	
-	@Test
-	@DisplayName("Example Test Method.")
-	void bmi() {
-		assertEquals(true, true);
-	}
-	
 	
 	@Test
 	@DisplayName("bmi correct")
@@ -31,13 +26,49 @@ public class BMICalcTest {
 		double bmi;
 		for(double m=4;m<10;m+=1.5) {
 			for(double h=1.5;m<2;m+=1.1) {
-				bmi = b.bmi(m, h);
+				bmi = Math.round(b.bmi(m, h));
 				assertEquals(bmi,m/(h*h));
 				assertNotEquals(bmi, (m/(h*h))+1);
 			}
 		}
 		
 	}
+	
+	@Test
+	@DisplayName("bmi data not null")
+	void exceptionTesting() {
+	
+		Exception exception1 = assertThrows(ArithmeticException.class,
+				()->b.bmi(60, 0));
+		Exception exception2 = assertThrows(ArithmeticException.class,
+				()->b.bmi(0, 1.70));
+	}
+	
+	
+	@Test
+	@DisplayName("bmi data not negative")
+	void exceptionTesting2() {
+		
+		Exception exception1 = assertThrows(ArithmeticException.class,
+				()->b.bmi(60, -1));
+		Exception exception2 = assertThrows(ArithmeticException.class,
+				()->b.bmi(-1, 1.70));
+	}
+	
+	@Test
+	@DisplayName("bmi data in range")
+	void exceptionTesting3() {
+		Exception exception1 = assertThrows(ArithmeticException.class,
+											()->b.bmi(700,1.7));
+		Exception exception2 = assertThrows(ArithmeticException.class,
+											()->b.bmi(0.1,1.7));
+		Exception exception3 = assertThrows(ArithmeticException.class,
+											()->b.bmi(60,3));
+		Exception exception4 = assertThrows(ArithmeticException.class,
+											()->b.bmi(60,0.012));
+		
+	}
+	
 	
 	@Test
 	@DisplayName("bmi not null")
@@ -112,6 +143,14 @@ public class BMICalcTest {
 		assertNotEquals(true, b.abdominalObesity(90, 'M'));
 	}
 	
-	
+	@Test
+	@DisplayName("gender F or M")
+	void exceptionTesting4() {
+		
+		Exception exception1 = assertThrows(RuntimeException.class,
+				()->b.bmi(85, 'f'));
+		Exception exception2 = assertThrows(RuntimeException.class,
+				()->b.bmi(84, 'm'));
+	}
 	
 }
