@@ -22,20 +22,6 @@ public class BMICalcTest {
 	
 	@Test
 	@DisplayName("bmi correct")
-	void testbmi2() {
-		double bmi;
-		for(double m=4;m<10;m+=1.5) {
-			for(double h=1.5;m<2;m+=1.1) {
-				bmi = Math.round(b.bmi(m, h));
-				assertEquals(bmi,Math.round(m/(h*h)));
-				assertNotEquals(bmi, (m/(h*h))+1);
-			}
-		}
-		
-	}
-	
-	@Test
-	@DisplayName("bmi correct")
 	void testbmi5() {
 		double bmi;
 		bmi = b.bmi(65, 1.70);
