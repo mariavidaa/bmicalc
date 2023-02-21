@@ -5,8 +5,8 @@ A biomedical calculator for the body mass index (BMI) and other parameters.
 
 Firstly, test for the bmi method are defined. Considering the result of the function bmi it is developed the following tests:
 
-1.	For different inputs (mass and height) the result from the function should be equal 
-	to the actual bmi and should not be for incorrect bmi (we try this adding 1 to the correct solution).
+1.	For specific inputs (mass and height) the result from the function should be equal to the actual bmi 
+	and should not be for incorrect bmi (we try this adding 1 to the correct solution).
 	
 2.	This test check that the data (height or mass) is not null.
 

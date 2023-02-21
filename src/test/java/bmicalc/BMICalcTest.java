@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class BMICalcTest {
 	
 	private BMICalcImpl b;
-	private double a;
+	
 	
 	@BeforeEach
 	public void start() {
@@ -27,12 +27,23 @@ public class BMICalcTest {
 		for(double m=4;m<10;m+=1.5) {
 			for(double h=1.5;m<2;m+=1.1) {
 				bmi = Math.round(b.bmi(m, h));
-				assertEquals(bmi,m/(h*h));
+				assertEquals(bmi,Math.round(m/(h*h)));
 				assertNotEquals(bmi, (m/(h*h))+1);
 			}
 		}
 		
 	}
+	
+	@Test
+	@DisplayName("bmi correct")
+	void testbmi5() {
+		double bmi;
+		bmi = b.bmi(65, 1.70);
+		double bmiround = Math.round(bmi*1000.0)/1000.0;
+		assertEquals(bmiround,22.491);
+		assertNotEquals(bmiround, 22.4);
+	}
+	
 	
 	@Test
 	@DisplayName("bmi data not null")
