@@ -7,10 +7,25 @@ public class BMICalcImpl implements BMICalc {
 	}
 
 	public double bmi(double mass, double height) {
-		return Math.round(mass/(height*height));
+		
+		if ( height<=0 || mass<=0) {
+			throw new ArithmeticException();
+		}
+		
+		if (mass<0.420 || mass>635) {
+			throw new ArithmeticException();
+		}
+		
+		if (height<0.023 || height>2.6) {
+			throw new ArithmeticException();
+		}
+		
+		
+		return (mass/(height*height));
 	}
 
 	public String category(double bmi) {
+		
 		String category = null;
 		if (bmi < 18.5) {
 			category = "UNDERWEIGHT";
@@ -30,6 +45,9 @@ public class BMICalcImpl implements BMICalc {
 
 	public boolean abdominalObesity(double waistCircumference, char gender) {
 		boolean ao = false;
+		if ( gender!= 'F' && gender!= 'M') {
+			throw new RuntimeException();
+		}
 		if (gender=='F' && waistCircumference>80) {
 			ao = true;
 		} else if (gender=='M' && waistCircumference>90) {
