@@ -68,16 +68,16 @@ Trigger: select the operation "Determine if a person has abdominal obsesity"
 
 Main success scenario:
 
-	1. User introduce the data (waist circumference measurement and gender as F (female) or M (male))
+1. User introduce the data (waist circumference measurement and gender as F (female) or M (male))
 	 
-	2. The system confirm and do the operation
+2. The system confirm and do the operation
 	
-	3. The system return the result of the operation as "true" or "false"
+3. The system return the result of the operation as "true" or "false"
 	
 Alternate scenario:
 
-	1a. Sumitted data is incorrect:the gender is not introduce as F or M
+1a. Sumitted data is incorrect:the gender is not introduce as F or M
 	
-	1b. The system return an error message
+1b. The system return an error message
 	
-	1c. back to step 1
+1c. back to step 1
