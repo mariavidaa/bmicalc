@@ -42,3 +42,6 @@ that the limit is not include.
 
 13. This test check that the gender is correctly introduce (F or M).
 
+upload use case diagram as an image
+
+![Image text](/doc/casodeuso.png)
