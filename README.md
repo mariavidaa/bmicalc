@@ -44,4 +44,4 @@ that the limit is not include.
 
 upload use case diagram as an image
 
-![Image text](/doc/casodeuso.png)
+![Image text](/doc/casodeuso.ipg)
