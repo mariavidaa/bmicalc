@@ -81,3 +81,51 @@ Alternate scenario:
 1b. The system return an error message
 	
 1c. back to step 1
+
+## User story and acceptance criteria
+
+Feature: 
+	As a user
+	I want to compute the bmi of a given mass and height 
+	So that I can know the result
+Scenario1: calculating the bmi for possible mass and height
+	Given I have a bmi calculator
+	  and mass is <m>
+	  and height is <h>
+	When i calculate bmi for possible mass and height
+	Then the system returns <value>
+Scenario2: calculating the bmi for impossible mass or height
+	Given I have a bmi calculator
+	  and mass is <m>
+	  and height is <h>
+	When i calculate bmi for impossible mass and height
+	Then the system raises an exception
+
+
+Feature: 
+	As a Woman User
+	I want to know if I have abdominal obsesity
+	So that I can keep healthy
+Scenario: calculating abdominalobesity for possible values
+	Given the user is a woman 
+	  and her waistCircumference is <n>
+	When i calculate abdominalobsesity
+	Then the system returns for abdominalobsesity <value>
+
+Feature:
+	As a nutritionist
+	I want to know my patient category
+	So that I can recommend the correct diet
+Scenario1: calculating category for possible values
+	Given the bmi <n>
+	When i calculate category
+	Then the system returns for category <value>
+Scenario2: calculating category for null bmi
+	Given the bmi 0
+	When i calculate category
+	Then the system raises an exception
+Scenario3: calculating category for negative bmi
+	Given the bmi -5
+	When i calculate category
+	Then the system raises an exception
+
