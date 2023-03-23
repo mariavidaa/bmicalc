@@ -1,6 +1,5 @@
 package bmicalc;
 
-import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -35,9 +34,9 @@ public class BMICalcTest {
 	@DisplayName("bmi data not null")
 	void exceptionTesting() {
 	
-		Exception exception1 = assertThrows(ArithmeticException.class,
+		Exception exception1 = assertThrows(NegativeValueException.class,
 				()->b.bmi(60, 0));
-		Exception exception2 = assertThrows(ArithmeticException.class,
+		Exception exception2 = assertThrows(NegativeValueException.class,
 				()->b.bmi(0, 1.70));
 	}
 	
@@ -46,9 +45,9 @@ public class BMICalcTest {
 	@DisplayName("bmi data not negative")
 	void exceptionTesting2() {
 		
-		Exception exception1 = assertThrows(ArithmeticException.class,
+		Exception exception1 = assertThrows(NegativeValueException.class,
 				()->b.bmi(60, -1));
-		Exception exception2 = assertThrows(ArithmeticException.class,
+		Exception exception2 = assertThrows(NegativeValueException.class,
 				()->b.bmi(-1, 1.70));
 	}
 	
