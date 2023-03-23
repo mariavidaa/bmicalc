@@ -9,7 +9,7 @@ public class BMICalcImpl implements BMICalc {
 	public double bmi(double mass, double height) {
 		
 		if ( height<=0 || mass<=0) {
-			throw new ArithmeticException();
+			throw new NegativeValueException("Numeros negativos.");
 		}
 		
 		if (mass<0.420 || mass>635) {
