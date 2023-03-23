@@ -163,3 +163,8 @@ Scenario3: calculating category for negative bmi
 	
 	Then the system raises an exception
 
+## Graphic Interface
+
+![Image text](/doc/bmicalculator1.png)
+
+![Image text](bmicalculator.png)
