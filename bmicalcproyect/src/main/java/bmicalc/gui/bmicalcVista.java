@@ -101,7 +101,7 @@ public class bmicalcVista extends JFrame {
 		JLabel lblgender = new JLabel("gender :");
 		panel_gender.add(lblgender);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Female", "Male"}));
 		panel_gender.add(comboBox);
 		
@@ -138,10 +138,10 @@ public class bmicalcVista extends JFrame {
 		flowLayout_1.setAlignment(FlowLayout.LEFT);
 		panel.add(panel_bmicalc);
 		
-		JButton btnBMI = new JButton("Compute bmi");
+		btnBMI = new JButton("Compute bmi");
 		panel_bmicalc.add(btnBMI);
 		
-		JLabel lblresultado_bmi = new JLabel("El resultado de bmi es: ");
+		lblresultado_bmi = new JLabel("El resultado de bmi es: ");
 		lblresultado_bmi.setHorizontalAlignment(SwingConstants.TRAILING);
 		panel_bmicalc.add(lblresultado_bmi);
 		
@@ -150,11 +150,11 @@ public class bmicalcVista extends JFrame {
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		panel.add(panel_abdobsesitycalc);
 		
-		JButton btnABDOBESITY = new JButton("Compute abdominal obesity");
+		btnABDOBESITY = new JButton("Compute abdominal obesity");
 		btnABDOBESITY.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_abdobsesitycalc.add(btnABDOBESITY);
 		
-		JLabel lblresult_abdobsesity = new JLabel("El resultado de si tiene abdominal obsesity es: ");
+		lblresult_abdobsesity = new JLabel("El resultado de si tiene abdominal obsesity es: ");
 		lblresult_abdobsesity.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_abdobsesitycalc.add(lblresult_abdobsesity);
 		
@@ -163,11 +163,11 @@ public class bmicalcVista extends JFrame {
 		flowLayout_2.setAlignment(FlowLayout.LEFT);
 		panel.add(panel_categorycalc);
 		
-		JButton btnCATEGORY = new JButton("Compute category");
+		btnCATEGORY = new JButton("Compute category");
 		btnCATEGORY.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_categorycalc.add(btnCATEGORY);
 		
-		JLabel lblresult_category = new JLabel("La categoria obtenida es: ");
+		lblresult_category = new JLabel("La categoria obtenida es: ");
 		panel_categorycalc.add(lblresult_category);
 		
 		pack();
@@ -187,7 +187,13 @@ public class bmicalcVista extends JFrame {
 	}
 	
 	public double getInputValueMass() {
-		return Double.parseDouble(textField_mass.getText());
+		try {
+			return Double.parseDouble(textField_mass.getText());	
+		} catch (NumberFormatException e) {
+			lblresultado_bmi.setText("Introduce un numero valido.");
+			return -1;
+		}
+		
 	}
 	
 	public double getInputValueHeight() {
@@ -230,7 +236,9 @@ public class bmicalcVista extends JFrame {
 	}
 	
 	
-	
+	public void error(String msg) {
+		lblresultado_bmi.setText(msg);
+	}
 	
 	
 }
