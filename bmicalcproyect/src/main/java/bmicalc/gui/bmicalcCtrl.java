@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import bmicalc.BMICalcImpl;
+import bmicalc.NegativeValueException;
 
 public class bmicalcCtrl implements ActionListener{
 
@@ -23,8 +24,14 @@ public class bmicalcCtrl implements ActionListener{
 			if (command.equalsIgnoreCase("Compute bmi")) {
 				double m = vista.getInputValueMass();
 				double h = vista.getInputValueHeight();
-				double resultado = calculator.bmi(m, h);
-				vista.setResultado_bmi(resultado);
+				try {
+					double bmi = calculator.bmi(m, h);
+					double resultado = Math.round(bmi*1000.0)/1000.0;
+					vista.setResultado_bmi(resultado);
+				} catch (NegativeValueException error) {
+					vista.error("Introduce un número positivo.");
+				}
+				
 			}
 			if (command.equalsIgnoreCase("Compute abdominal obesity")) {
 				double wc = vista.getInputValueWaistC();
@@ -35,8 +42,13 @@ public class bmicalcCtrl implements ActionListener{
 				} else if (gender == "Male"){
 					g = 'M';
 				}
-				boolean resultado = calculator.abdominalObesity(wc, g);
-				vista.setResultado_abdobsesity(resultado);
+				try {
+					boolean resultado = calculator.abdominalObesity(wc, g);
+					vista.setResultado_abdobsesity(resultado);
+				} catch (NegativeValueException error) {
+					vista.error("Introduce un número positivo.");
+				}
+				
 			}
 			if (command.equalsIgnoreCase("Compute category")) {
 				double bmi = vista.getInputValueBMI();
