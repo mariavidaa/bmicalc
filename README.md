@@ -165,6 +165,6 @@ Scenario3: calculating category for negative bmi
 
 ## Graphic Interface
 
-![Image text](/doc/bmicalculator1.png)
+![Image text](/doc/bmicalculator1.PNG)
 
 ![Image text](bmicalculator.png)
