@@ -15,7 +15,7 @@ public class BMICalcTest {
 	
 	@BeforeEach
 	public void start() {
-		b = new BMICalcImpl();
+		b = BMICalcImpl.getInstance();
 	}
 	
 	
