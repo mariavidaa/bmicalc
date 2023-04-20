@@ -13,6 +13,8 @@ public class main {
 		Proxy imcCalc_proxy = new Proxy(imcCalc);
 		//tenemos una calculadora Europea
 		BaseDecorator EuropaCalc = new DecoratorEuropa(imcCalc);
+		// tenemos una calculadora Americana
+		BaseDecorator AmericaCalc = new DecoratorAmerica(imcCalc);
 		
 		//calculamos el bmi y la categoria de bmicalc
 		double bmi = bmiCalc.bmi(60, 1.7);
@@ -32,8 +34,13 @@ public class main {
 		System.out.println("la altura media es: " + pesoMedio);
 		
 		//probando el patron de diseño Decorator
-		Map<Double, String> imc_3 = EuropaCalc.imc(1.7, 60);
-		System.out.println("El IMC de la calculadora Europea es: " + imc_3);
+		//calculamos el IMC de la calculadora Europea
+		EuropaCalc.imc(1.7, 60);
+		//calculamos el IMC de la calculadora Americana
+		AmericaCalc.imc(5.577428,132.2772);
+		
+		
+		
 		
 	}
 
