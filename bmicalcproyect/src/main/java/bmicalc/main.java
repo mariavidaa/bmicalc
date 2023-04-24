@@ -1,47 +1,106 @@
 package bmicalc;
 
 import java.util.Map;
+import java.util.Scanner;
 
 public class main {
 
 	public static void main(String[] args) {
-		//tenemos una calculadora de tipo BMICalcImpl (singleton)
+		
+		
+		// creamos las calculadoras
+		// tenemos una calculadora de tipo BMICalcImpl (singleton)
 		BMICalcImpl bmiCalc = BMICalcImpl.getInstance();
-		// tenemos otra calculadora de tipo IMCHospital (adapter)
+		//tenemos otra calculadora de tipo IMCHospital (adapter)
 		IMCHospital imcCalc = new Adapter(bmiCalc);
-		//tenemos otra calculdora que implementa las interfaces IMCHospital e IMCStats (proxy)
+		// tenemos otra calculdora que implementa las interfaces IMCHospital e IMCStats (proxy)
 		Proxy imcCalc_proxy = new Proxy(imcCalc);
-		//tenemos una calculadora Europea
+		// tenemos una calculadora Europea
 		BaseDecorator EuropaCalc = new DecoratorEuropa(imcCalc);
 		// tenemos una calculadora Americana
 		BaseDecorator AmericaCalc = new DecoratorAmerica(imcCalc);
+		//podemos añadir los compportamientos de las dos clases en uno
+		//BaseDecorator AmericaCalc = new DecoratorAmerica(EuropaCalc);
 		
-		//calculamos el bmi y la categoria de bmicalc
-		double bmi = bmiCalc.bmi(60, 1.7);
-		String category = bmiCalc.category(bmi);
-		// lo hacemos para imcCalc
-		Map<Double, String> imc = imcCalc.imc(1.7, 60);
-		//los resultados seran iguales
-		System.out.println("El BMI es: " + bmi + " y la categoría es: " + category);
-		System.out.println("El IMC es: " + imc);
+		// probamos el patron de diseño singleton y los usamos como introduccion de nuestra aplicacion
+		System.out.println("Esta calculadora realiza operaciones como calcular el indice de masa corporal para un paciente de 60kg y altura de 1,7 metros cuyo resultado es " + bmiCalc.bmi(60, 1.7));
 		
-		//probando patron de diseño proxy
-		//calculamos el imc y comprobamos si tiene obesidad abdominal
-		Map<Double, String> imc_2 = imcCalc_proxy.imc(1.7, 60);
-		boolean obesidad = imcCalc_proxy.tieneObesidadAbdominal('F', 32.5);
-		System.out.println("IMC: " + imc_2 + ", obsesidad abdominal: " + obesidad);
-		double pesoMedio = imcCalc_proxy.pesoMedio();
-		System.out.println("la altura media es: " + pesoMedio);
+		Scanner sc = new Scanner(System.in);
+		boolean salir = false;
 		
-		//probando el patron de diseño Decorator
-		//calculamos el IMC de la calculadora Europea
-		EuropaCalc.imc(1.7, 60);
-		//calculamos el IMC de la calculadora Americana
-		AmericaCalc.imc(5.577428,132.2772);
-		
-		
-		
-		
-	}
+		while (!salir) {
+			//mMostramos las opciones disponibles
+			System.out.println("Opciones:");
+			System.out.println("0: Salir de la aplicacion");
+			System.out.println("1: Calcular el IMC");
+			System.out.println("2: English: Calculate IMC");
+			System.out.println("3: Averiguar si presenta obsidad abdominal");
+			System.out.println("4: Averiguar la altura media de los pacientes hasta el momento");
+			System.out.println("5: Averiguar el peso medio de los pacientes hasta el momento");
+			System.out.println("6: Averiguar el IMC medio de los pacientes hasta el momento");
+			System.out.println("7: Averiguar el numero de pacientes");
 
-}
+			
+			// Leemos la opción del usuario
+			System.out.print("Ingrese una opcion: ");
+			int opcion = sc.nextInt();
+			sc.nextLine(); 
+			
+			// Ejecutamos la acción correspondiente a la opción elegida
+			switch (opcion) {
+			case 0:
+                salir = true;
+                break;
+			case 1:
+				// Aquí va el código para ejecutar la opción 1
+				System.out.print("Ingrese el peso (en kg) (ejemplo 60,5): ");
+				double peso = sc.nextDouble();
+				System.out.print("Ingrese la altura (en metros) (ejemplo 1,7): ");
+				double altura = sc.nextDouble();
+				imcCalc_proxy.imc(altura, peso);
+				System.out.println(imcCalc.imc(altura, peso));
+				break;
+			case 2:
+				System.out.print("Enter weight (kg) (example 60,5): ");
+				double peso2 = sc.nextDouble();
+				System.out.print("Enter height (m) (example 1,7): ");
+				double altura2 = sc.nextDouble();
+				imcCalc_proxy.imc(altura2, peso2);
+				System.out.println(AmericaCalc.imc(altura2, peso2));
+				break;
+			case 3:
+				System.out.print("Ingrese el genero como F o M (F si femenino o M si masculino): ");
+				char genero = sc.next().charAt(0);
+				System.out.print("Ingrese la medida de circunferencia (en cm) (ejemplo 70,2): ");
+				double circunferencia = sc.nextDouble();
+				System.out.println(imcCalc.tieneObesidadAbdominal(genero, circunferencia));
+				break;
+			case 4:
+				System.out.println(imcCalc_proxy.alturaMedia());
+				break;
+			case 5:
+				System.out.println(imcCalc_proxy.pesoMedio());
+				break;
+			case 6:
+				System.out.println(imcCalc_proxy.imcMedio());
+				break;
+			case 7:
+				System.out.println(imcCalc_proxy.numPacientes());
+				break;
+			
+			default:
+				System.out.println("Opción inválida");
+				break;
+			}
+			
+		}
+			
+		sc.close(); // Cerramos el Scanner
+			
+			
+			
+			
+			
+		}	
+
+	}

@@ -14,8 +14,8 @@ public class Proxy implements IMCHospital, IMCStats{
 
 	@Override
 	public Map<Double, String> imc(double altura, double peso) {
-		pesoTotal += altura;
-		alturaTotal += peso;
+		pesoTotal += peso;
+		alturaTotal += altura;
 		numPacientes ++;
 		Map<Double, String> resultado = realcalc.imc(altura, peso); // llama al método "imc" y obtiene el mapa resultante
 		Double imc = resultado.keySet().toArray(new Double[1])[0];
