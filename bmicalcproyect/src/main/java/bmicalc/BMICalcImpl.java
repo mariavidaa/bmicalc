@@ -2,9 +2,9 @@ package bmicalc;
 
 
 
-public class BMICalcImpl implements CardioVascularMetrics {
+public class BMICalcImpl implements CardioVascularMetrics, MetabolicMetrics {
 	
-	private ObesityCategory category;
+	
 	
 	public BMICalcImpl() {
 		
@@ -32,30 +32,30 @@ public class BMICalcImpl implements CardioVascularMetrics {
 		
 		
 		if (bmi < 18.5) {
-			return category.UNDERWEIGHT;
+			return ObesityCategory.UNDERWEIGHT;
 		}
 		else if (bmi >= 18.5 && bmi <=24.9) {
-			return category.NORMAL;
+			return ObesityCategory.NORMAL;
 		}
 		else if (bmi >= 25.0 && bmi <=29.9) {
-			return category.OVERWEIGHT;
+			return ObesityCategory.OVERWEIGHT;
 		}
 		else {
-			return category.OBESE;
+			return ObesityCategory.OBESE;
 		}
 		
 		
 		
 	}
 
-	public boolean abdominalObesity(double waistCircumference, char gender) {
+	public boolean abdominalObesity(double waistCircumference, Gender gender) {
 		boolean ao = false;
-		if ( gender!= 'F' && gender!= 'M') {
+		if ( gender!= Gender.FEMALE && gender!= Gender.MALE) {
 			throw new RuntimeException();
 		}
-		if (gender=='F' && waistCircumference>80) {
+		if (gender==Gender.FEMALE && waistCircumference>80) {
 			ao = true;
-		} else if (gender=='M' && waistCircumference>90) {
+		} else if (gender==Gender.MALE && waistCircumference>90) {
 			ao = true;
 		}
 		return ao;

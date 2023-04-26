@@ -127,16 +127,16 @@ public class BMICalcTest {
 	@DisplayName("abdominalObesity woman correct")
 	@ValueSource (doubles = {80.1, 85})
 	void testao1(double wc) {
-		assertEquals(true,b.abdominalObesity(wc, 'F'));
-		assertNotEquals(true, b.abdominalObesity(80, 'F'));
+		assertEquals(true,b.abdominalObesity(wc, Gender.FEMALE));
+		assertNotEquals(true, b.abdominalObesity(80, Gender.FEMALE));
 	}
 	
 	@ParameterizedTest
 	@DisplayName("abdominalObesity man correct")
 	@ValueSource (doubles = {92.0, 95})
 	void testao2(double wc) {
-		assertEquals(true,b.abdominalObesity(wc, 'M'));
-		assertNotEquals(true, b.abdominalObesity(90, 'M'));
+		assertEquals(true,b.abdominalObesity(wc, Gender.MALE));
+		assertNotEquals(true, b.abdominalObesity(90, Gender.MALE));
 	}
 	
 	@Test

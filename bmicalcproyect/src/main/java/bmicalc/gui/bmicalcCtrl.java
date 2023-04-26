@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import bmicalc.BMICalcImpl;
+import bmicalc.Gender;
 import bmicalc.NegativeValueException;
 import bmicalc.ObesityCategory;
 
@@ -37,11 +38,11 @@ public class bmicalcCtrl implements ActionListener{
 			if (command.equalsIgnoreCase("Compute abdominal obesity")) {
 				double wc = vista.getInputValueWaistC();
 				String gender = vista.getInputValueGender();
-				char g = ' ';
+				Gender g = null;
 				if (gender == "Female"){
-						g = 'F';
+						g = Gender.FEMALE;
 				} else if (gender == "Male"){
-					g = 'M';
+					g = Gender.MALE;
 				}
 				try {
 					boolean resultado = calculator.abdominalObesity(wc, g);
