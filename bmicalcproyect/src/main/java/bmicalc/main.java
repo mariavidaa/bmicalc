@@ -16,9 +16,9 @@ public class main {
 		// tenemos otra calculdora que implementa las interfaces IMCHospital e IMCStats (proxy)
 		Proxy imcCalc_proxy = new Proxy(imcCalc);
 		// tenemos una calculadora Europea
-		BaseDecorator EuropaCalc = new DecoratorEuropa(imcCalc);
+		BaseDecorator EuropaCalc = new DecoratorEuropa(imcCalc_proxy);
 		// tenemos una calculadora Americana
-		BaseDecorator AmericaCalc = new DecoratorAmerica(imcCalc);
+		BaseDecorator AmericaCalc = new DecoratorAmerica(imcCalc_proxy);
 		//podemos añadir los compportamientos de las dos clases en uno
 		//BaseDecorator AmericaCalc = new DecoratorAmerica(EuropaCalc);
 		
@@ -57,15 +57,15 @@ public class main {
 				double peso = sc.nextDouble();
 				System.out.print("Ingrese la altura (en metros) (ejemplo 1,7): ");
 				double altura = sc.nextDouble();
-				imcCalc_proxy.imc(altura, peso);
-				System.out.println(imcCalc.imc(altura, peso));
+				//imcCalc_proxy.imc(altura, peso);
+				System.out.println(EuropaCalc.imc(altura, peso));
 				break;
 			case 2:
 				System.out.print("Enter weight (kg) (example 60,5): ");
 				double peso2 = sc.nextDouble();
 				System.out.print("Enter height (m) (example 1,7): ");
 				double altura2 = sc.nextDouble();
-				imcCalc_proxy.imc(altura2, peso2);
+				//imcCalc_proxy.imc(altura2, peso2);
 				System.out.println(AmericaCalc.imc(altura2, peso2));
 				break;
 			case 3:
@@ -76,14 +76,17 @@ public class main {
 				System.out.println(imcCalc.tieneObesidadAbdominal(genero, circunferencia));
 				break;
 			case 4:
-				System.out.println(imcCalc_proxy.alturaMedia());
+				
+				// System.out.println(imcCalc_proxy.alturaMedia());
+				System.out.println(Math.round((imcCalc_proxy.alturaMedia())*1000.0)/1000.0);
 				break;
 			case 5:
-				System.out.println(imcCalc_proxy.pesoMedio());
+				
+				System.out.println(Math.round((imcCalc_proxy.pesoMedio())*1000.0)/1000.0);
 				break;
 			case 6:
-				System.out.println(imcCalc_proxy.imcMedio());
-				break;
+				
+				System.out.println(Math.round((imcCalc_proxy.imcMedio())*1000.0)/1000.0);
 			case 7:
 				System.out.println(imcCalc_proxy.numPacientes());
 				break;

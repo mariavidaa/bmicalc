@@ -16,7 +16,7 @@ public class DecoratorAmerica extends BaseDecorator{
 		double peso = libras/2.20462;
 		Map<Double, String> resultado = super.imc(altura, peso);
 		double bmi = resultado.keySet().toArray(new Double[1])[0];
-		System.out.println("The person with height " + Math.round(altura*1000.0)/1000.0 + " meters and " + peso + " kilos has a BMI of " + bmi + ".");
+		System.out.println("The person with height " + Math.round(altura*1000.0)/1000.0 + " meters and " + peso + " kilos has a BMI of " + Math.round(bmi*1000.0)/1000.0 + ".");
 		return resultado;
 	}
 	
