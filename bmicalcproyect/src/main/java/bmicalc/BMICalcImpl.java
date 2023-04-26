@@ -1,12 +1,12 @@
 package bmicalc;
 
-public class BMICalcImpl implements BMICalc {
+public class BMICalcImpl implements CardioVascularMetrics {
 	
 	public BMICalcImpl() {
 		
 	}
 
-	public double bmi(double mass, double height) {
+	public double calculateBodyMassIndex(double mass, double height) {
 		
 		if ( height<=0 || mass<=0) {
 			throw new NegativeValueException("Numeros negativos.");
@@ -24,7 +24,7 @@ public class BMICalcImpl implements BMICalc {
 		return (mass/(height*height));
 	}
 
-	public String category(double bmi) {
+	public String getObesityCategory(double bmi) {
 		
 		String category = null;
 		if (bmi < 18.5) {

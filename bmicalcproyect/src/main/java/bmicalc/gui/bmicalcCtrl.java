@@ -25,7 +25,7 @@ public class bmicalcCtrl implements ActionListener{
 				double m = vista.getInputValueMass();
 				double h = vista.getInputValueHeight();
 				try {
-					double bmi = calculator.bmi(m, h);
+					double bmi = calculator.calculateBodyMassIndex(m, h);
 					double resultado = Math.round(bmi*1000.0)/1000.0;
 					vista.setResultado_bmi(resultado);
 				} catch (NegativeValueException error) {
@@ -52,7 +52,7 @@ public class bmicalcCtrl implements ActionListener{
 			}
 			if (command.equalsIgnoreCase("Compute category")) {
 				double bmi = vista.getInputValueBMI();
-				String resultado = calculator.category(bmi);
+				String resultado = calculator.getObesityCategory(bmi);
 				vista.setResultado_category(resultado);
 			}
 		}

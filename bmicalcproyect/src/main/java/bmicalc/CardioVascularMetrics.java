@@ -1,7 +1,7 @@
 package bmicalc;
 
 
-public interface BMICalc {
+public interface CardioVascularMetrics {
 	
 	/**
 	 * Calculate the Body Mass Index (BMI) of a person.
@@ -11,7 +11,7 @@ public interface BMICalc {
 	 * @param height Height of the person.
 	 * @return 		 The Body Mass Index (BMI) value.
 	 */
-	public double bmi(double mass, double height);
+	public double calculateBodyMassIndex(double mass, double height);
 	
 	/**
 	 * Categorize a person according to the BMI category:
@@ -23,7 +23,7 @@ public interface BMICalc {
 	 * @param bmi Body Mass Index (BMI) value.
 	 * @return	  String representing the BMI category.
 	 */
-	public String category(double bmi);
+	public String getObesityCategory(double bmi);
 	
 	/**
 	 * Determine whether a person has abdominal obesity.
