@@ -1,6 +1,10 @@
 package bmicalc;
 
+
+
 public class BMICalcImpl implements CardioVascularMetrics {
+	
+	private ObesityCategory category;
 	
 	public BMICalcImpl() {
 		
@@ -24,23 +28,24 @@ public class BMICalcImpl implements CardioVascularMetrics {
 		return (mass/(height*height));
 	}
 
-	public String getObesityCategory(double bmi) {
+	public ObesityCategory getObesityCategory(double bmi) {
 		
-		String category = null;
+		
 		if (bmi < 18.5) {
-			category = "UNDERWEIGHT";
+			return category.UNDERWEIGHT;
 		}
 		else if (bmi >= 18.5 && bmi <=24.9) {
-			category = "NORMAL";
+			return category.NORMAL;
 		}
 		else if (bmi >= 25.0 && bmi <=29.9) {
-			category = "OVERWEIGHT";
+			return category.OVERWEIGHT;
 		}
-		else if (bmi >=30) {
-			category = "OBESE";
+		else {
+			return category.OBESE;
 		}
 		
-		return category;
+		
+		
 	}
 
 	public boolean abdominalObesity(double waistCircumference, char gender) {

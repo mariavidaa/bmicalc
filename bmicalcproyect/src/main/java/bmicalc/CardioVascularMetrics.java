@@ -23,7 +23,7 @@ public interface CardioVascularMetrics {
 	 * @param bmi Body Mass Index (BMI) value.
 	 * @return	  String representing the BMI category.
 	 */
-	public String getObesityCategory(double bmi);
+	public ObesityCategory getObesityCategory(double bmi);
 	
 	/**
 	 * Determine whether a person has abdominal obesity.

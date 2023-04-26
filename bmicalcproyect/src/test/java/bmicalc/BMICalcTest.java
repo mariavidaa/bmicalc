@@ -94,8 +94,8 @@ public class BMICalcTest {
 	@DisplayName("category underweight correct")
 	@ValueSource (doubles = {10, 18.4})
 	void testcat1(double bmi) {
-		assertEquals("UNDERWEIGHT",b.getObesityCategory(bmi));
-		assertNotEquals("UNDERWEIGHT", b.getObesityCategory(19));
+		assertEquals(ObesityCategory.UNDERWEIGHT,b.getObesityCategory(bmi));
+		assertNotEquals(ObesityCategory.UNDERWEIGHT, b.getObesityCategory(19));
 	}
 	
 	
@@ -103,24 +103,24 @@ public class BMICalcTest {
 	@DisplayName("category normal correct")
 	@ValueSource (doubles = {18.5, 20, 24.9})
 	void testcat2(double bmi) {
-		assertEquals("NORMAL",b.getObesityCategory(bmi));
-		assertNotEquals("NORMAL", b.getObesityCategory(26));
+		assertEquals(ObesityCategory.NORMAL,b.getObesityCategory(bmi));
+		assertNotEquals(ObesityCategory.NORMAL, b.getObesityCategory(26));
 	}
 	
 	@ParameterizedTest
 	@DisplayName("category overweight correct")
 	@ValueSource (doubles = {25.0, 28, 29.9})
 	void testcat3(double bmi) {
-		assertEquals("OVERWEIGHT",b.getObesityCategory(bmi));
-		assertNotEquals("OVERWEIGHT", b.getObesityCategory(23));
+		assertEquals(ObesityCategory.OVERWEIGHT,b.getObesityCategory(bmi));
+		assertNotEquals(ObesityCategory.OVERWEIGHT, b.getObesityCategory(23));
 	}
 	
 	@ParameterizedTest
 	@DisplayName("category obese correct")
 	@ValueSource (doubles = {30, 60})
 	void testcat4(double bmi) {
-		assertEquals("OBESE",b.getObesityCategory(bmi));
-		assertNotEquals("OBESE", b.getObesityCategory(25));
+		assertEquals(ObesityCategory.OBESE,b.getObesityCategory(bmi));
+		assertNotEquals(ObesityCategory.OBESE, b.getObesityCategory(25));
 	}
 	
 	@ParameterizedTest

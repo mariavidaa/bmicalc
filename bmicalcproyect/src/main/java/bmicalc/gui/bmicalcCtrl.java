@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import bmicalc.BMICalcImpl;
 import bmicalc.NegativeValueException;
+import bmicalc.ObesityCategory;
 
 public class bmicalcCtrl implements ActionListener{
 
@@ -52,7 +53,7 @@ public class bmicalcCtrl implements ActionListener{
 			}
 			if (command.equalsIgnoreCase("Compute category")) {
 				double bmi = vista.getInputValueBMI();
-				String resultado = calculator.getObesityCategory(bmi);
+				ObesityCategory resultado = calculator.getObesityCategory(bmi);
 				vista.setResultado_category(resultado);
 			}
 		}
