@@ -23,7 +23,7 @@ public class BMICalcTest {
 	@DisplayName("bmi correct")
 	void testbmi5() {
 		double bmi;
-		bmi = b.bmi(65, 1.70);
+		bmi = b.calculateBodyMassIndex(65, 1.70);
 		double bmiround = Math.round(bmi*1000.0)/1000.0;
 		assertEquals(bmiround,22.491);
 		assertNotEquals(bmiround, 22.4);
@@ -35,9 +35,9 @@ public class BMICalcTest {
 	void exceptionTesting() {
 	
 		Exception exception1 = assertThrows(NegativeValueException.class,
-				()->b.bmi(60, 0));
+				()->b.calculateBodyMassIndex(60, 0));
 		Exception exception2 = assertThrows(NegativeValueException.class,
-				()->b.bmi(0, 1.70));
+				()->b.calculateBodyMassIndex(0, 1.70));
 	}
 	
 	
@@ -46,22 +46,22 @@ public class BMICalcTest {
 	void exceptionTesting2() {
 		
 		Exception exception1 = assertThrows(NegativeValueException.class,
-				()->b.bmi(60, -1));
+				()->b.calculateBodyMassIndex(60, -1));
 		Exception exception2 = assertThrows(NegativeValueException.class,
-				()->b.bmi(-1, 1.70));
+				()->b.calculateBodyMassIndex(-1, 1.70));
 	}
 	
 	@Test
 	@DisplayName("bmi data in range")
 	void exceptionTesting3() {
 		Exception exception1 = assertThrows(ArithmeticException.class,
-											()->b.bmi(700,1.7));
+											()->b.calculateBodyMassIndex(700,1.7));
 		Exception exception2 = assertThrows(ArithmeticException.class,
-											()->b.bmi(0.1,1.7));
+											()->b.calculateBodyMassIndex(0.1,1.7));
 		Exception exception3 = assertThrows(ArithmeticException.class,
-											()->b.bmi(60,3));
+											()->b.calculateBodyMassIndex(60,3));
 		Exception exception4 = assertThrows(ArithmeticException.class,
-											()->b.bmi(60,0.012));
+											()->b.calculateBodyMassIndex(60,0.012));
 		
 	}
 	
@@ -72,7 +72,7 @@ public class BMICalcTest {
 		double bmi;
 		for(double m=4;m<10;m+=1.5) {
 			for(double h=1.5;m<2;m+=1.1) {
-				bmi = b.bmi(m, h);
+				bmi = b.calculateBodyMassIndex(m, h);
 				assertNotEquals(bmi,0);
 			}
 		}
@@ -84,7 +84,7 @@ public class BMICalcTest {
 		double bmi;
 		for(double m=4;m<10;m+=1.5) {
 			for(double h=1.5;m<2;m+=1.1) {
-				bmi = b.bmi(m, h);
+				bmi = b.calculateBodyMassIndex(m, h);
 				assertNotEquals(-1,bmi/bmi);
 			}
 		}
@@ -94,8 +94,8 @@ public class BMICalcTest {
 	@DisplayName("category underweight correct")
 	@ValueSource (doubles = {10, 18.4})
 	void testcat1(double bmi) {
-		assertEquals("UNDERWEIGHT",b.category(bmi));
-		assertNotEquals("UNDERWEIGHT", b.category(19));
+		assertEquals(ObesityCategory.UNDERWEIGHT,b.getObesityCategory(bmi));
+		assertNotEquals(ObesityCategory.UNDERWEIGHT, b.getObesityCategory(19));
 	}
 	
 	
@@ -103,40 +103,40 @@ public class BMICalcTest {
 	@DisplayName("category normal correct")
 	@ValueSource (doubles = {18.5, 20, 24.9})
 	void testcat2(double bmi) {
-		assertEquals("NORMAL",b.category(bmi));
-		assertNotEquals("NORMAL", b.category(26));
+		assertEquals(ObesityCategory.NORMAL,b.getObesityCategory(bmi));
+		assertNotEquals(ObesityCategory.NORMAL, b.getObesityCategory(26));
 	}
 	
 	@ParameterizedTest
 	@DisplayName("category overweight correct")
 	@ValueSource (doubles = {25.0, 28, 29.9})
 	void testcat3(double bmi) {
-		assertEquals("OVERWEIGHT",b.category(bmi));
-		assertNotEquals("OVERWEIGHT", b.category(23));
+		assertEquals(ObesityCategory.OVERWEIGHT,b.getObesityCategory(bmi));
+		assertNotEquals(ObesityCategory.OVERWEIGHT, b.getObesityCategory(23));
 	}
 	
 	@ParameterizedTest
 	@DisplayName("category obese correct")
 	@ValueSource (doubles = {30, 60})
 	void testcat4(double bmi) {
-		assertEquals("OBESE",b.category(bmi));
-		assertNotEquals("OBESE", b.category(25));
+		assertEquals(ObesityCategory.OBESE,b.getObesityCategory(bmi));
+		assertNotEquals(ObesityCategory.OBESE, b.getObesityCategory(25));
 	}
 	
 	@ParameterizedTest
 	@DisplayName("abdominalObesity woman correct")
 	@ValueSource (doubles = {80.1, 85})
 	void testao1(double wc) {
-		assertEquals(true,b.abdominalObesity(wc, 'F'));
-		assertNotEquals(true, b.abdominalObesity(80, 'F'));
+		assertEquals(true,b.abdominalObesity(wc, Gender.FEMALE));
+		assertNotEquals(true, b.abdominalObesity(80, Gender.FEMALE));
 	}
 	
 	@ParameterizedTest
 	@DisplayName("abdominalObesity man correct")
 	@ValueSource (doubles = {92.0, 95})
 	void testao2(double wc) {
-		assertEquals(true,b.abdominalObesity(wc, 'M'));
-		assertNotEquals(true, b.abdominalObesity(90, 'M'));
+		assertEquals(true,b.abdominalObesity(wc, Gender.MALE));
+		assertNotEquals(true, b.abdominalObesity(90, Gender.MALE));
 	}
 	
 	@Test
@@ -144,9 +144,9 @@ public class BMICalcTest {
 	void exceptionTesting4() {
 		
 		Exception exception1 = assertThrows(RuntimeException.class,
-				()->b.bmi(85, 'f'));
+				()->b.calculateBodyMassIndex(85, 'f'));
 		Exception exception2 = assertThrows(RuntimeException.class,
-				()->b.bmi(84, 'm'));
+				()->b.calculateBodyMassIndex(84, 'm'));
 	}
 	
 }

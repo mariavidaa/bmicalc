@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import bmicalc.ObesityCategory;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -226,8 +229,8 @@ public class bmicalcVista extends JFrame {
 	
 	
 	
-	public void setResultado_category(String resultado3) {
-		lblresult_category.setText("La categoria obtenida es: " + resultado3);
+	public void setResultado_category(ObesityCategory resultado) {
+		lblresult_category.setText("La categoria obtenida es: " + resultado);
 	}
 
 	public void setResultado_abdobsesity(boolean resultado) {
