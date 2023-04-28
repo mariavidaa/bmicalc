@@ -13,5 +13,5 @@ public interface CardioVascularMetrics {
 	 */
 	public double calculateBodyMassIndex(double mass, double height);
 	
-	
+	public ObesityCategory getObesityCategory(double bmi);
 }
